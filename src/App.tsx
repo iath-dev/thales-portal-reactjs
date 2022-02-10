@@ -7,9 +7,12 @@ import EmployeeItem from './components/EmployeeItem';
 import { grey, red } from '@material-ui/core/colors';
 import { createStyles, makeStyles } from '@material-ui/styles';
 
+
 const useStyles = makeStyles(createStyles({
   root: {
-    backgroundColor: grey[100]
+    backgroundColor: grey["50"],
+    height: "100vh",
+    maxHeight: "100vh"
   },
   alert: {
     color: "#fff",
@@ -30,13 +33,13 @@ function App() {
     if (s.trim() !== "") {
       BusinessService.getEmployee(s).then(data => {
         setEmployees([data])
-      }).catch(() => {
+      }).catch((e) => {
         setError("Error: Input a valid Employee ID!")
       })
     } else {
       BusinessService.getEmployees().then(data => {
         setEmployees(data);
-      }).catch(() => {
+      }).catch((e) => {
         setError("Error: No response from the server!")
       });
     }
@@ -46,7 +49,7 @@ function App() {
     setError("")
     BusinessService.getEmployees().then(data => {
       setEmployees(data);
-    }).catch(() => {
+    }).catch((e) => {
       setError("Error: No response from the server!")
     });
   }, [])
@@ -59,7 +62,7 @@ function App() {
           {error}
         </Box>
       )}
-      <Grid container spacing={2} alignItems="center" justifyContent="center">
+      <Grid container spacing={2} alignItems="center" justifyContent="flex-start">
         {employees.map(e => (
           <Grid item key={e.id as React.Key} lg={3} md={4} sm={6} xs={12}>
             <EmployeeItem name={e.employee_name} age={e.employee_age} anualSalary={e.employee_annual_salary} />

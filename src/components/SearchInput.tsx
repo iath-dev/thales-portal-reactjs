@@ -33,6 +33,9 @@ const SearchInput: React.FC<SearchInputProps> = ({ onSubmit }) => {
                     value={search}
                     onChange={handleChange}
                     InputProps={{
+                        style: {
+                            backgroundColor: "#fff"
+                        },
                         endAdornment: (
                             <InputAdornment position="end">
                                 <Button type="submit" color="primary" variant="contained" size="small" endIcon={<Search/>}>search</Button>
